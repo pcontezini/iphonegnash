@@ -6,8 +6,7 @@ This document tries to describe how to build all the library dependencies for gn
 
 = Libs =
 
-== Jpeg Lib ==
-
+*GLOBAL VARIABLES*
 
 SIMULATOR="CHANGEME" // destination path to all the libs, will be used to linking
 
@@ -29,28 +28,19 @@ export CPPFLAGS="-isysroot $SIMULATOR_SDK_DEVROOT -I$SIMULATOR/include -mmacosx-
 
 export LDFLAGS="-L$SIMULATOR/lib"
 
+
+== Jpeg Lib ==
+
 ./configure --prefix=$SIMULATOR --target=i686-apple-darwin10
 
 == Gif lib ==
 
-SIMULATOR="CHANGEME"
+./configure --prefix=$SIMULATOR --target=i686-apple-darwin10
 
-SIMULATOR_SDK="/Developer/Platforms/iPhoneSimulator.platform/"
+== PNG lib ==
 
-SIMULATOR_SDK_DEVROOT="/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk"
+./configure --prefix=$SIMULATOR --target=i686-apple-darwin10
 
-export CC="/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/i686-apple-darwin10-gcc-4.2.1"
+== Fontconfig lib ==
 
-export CFLAGS="-I$SIMULATOR/include"
-
-export CC="/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/i686-apple-darwin10-gcc-4.2.1"
-
-export CXX="/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/i686-apple-darwin10-gcc-4.2.1"
-
-export CFLAGS="-isysroot $SIMULATOR_SDK_DEVROOT -I$SIMULATOR/include -mmacosx-version-min=10.5"
-
-export CPPFLAGS="-isysroot $SIMULATOR_SDK_DEVROOT -I$SIMULATOR/include -mmacosx-version-min=10.5"
-
-export LDFLAGS="-L$SIMULATOR/lib"
-
-./configure --prefix=$SIMULATOR --target=i686-apple-darwin10`
+./configure --prefix=$SIMULATOR --target=i686-apple-darwin10 --with-expat-includes=$SIMULATOR/include --with-expat-lib=$SIMULATOR/lib --with-freetype-config=$SIMULATOR/bin/freetype-config --disable-iconv
