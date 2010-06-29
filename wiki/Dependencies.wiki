@@ -44,3 +44,7 @@ export LDFLAGS="-L$SIMULATOR/lib"
 == Fontconfig lib ==
 
 ./configure --prefix=$SIMULATOR --target=i686-apple-darwin10 --with-expat-includes=$SIMULATOR/include --with-expat-lib=$SIMULATOR/lib --with-freetype-config=$SIMULATOR/bin/freetype-config --disable-iconv
+
+== FFMPEG ==
+
+./configure --cc=$CC --as='../gas-preprocessor.pl $CC' --sysroot=SIMULATOR_SDK_DEVROOT --enable-cross-compile --target-os=darwin --arch=i386 --prefix=$SIMULATOR --enable-pic --disable-mmx --disable-mmx2             --disable-shared --disable-asm
